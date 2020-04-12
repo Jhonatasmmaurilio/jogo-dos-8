@@ -1,25 +1,28 @@
 var arrInicial = [],
     arrObjetivo = [],
     infinito = 1000,
-    pesoObjetivo;
+    arrNovo = [],
+    arrVisitados = [];
 
-arrInicial = [0, 2, 8, 7, 1, 3, 6, 5, 4];
+arrInicial = [1, 2, 3, 0, 5, 6, 4, 7, 8];
+arrInicial = [0, 1, 2, 7, 8, 3, 6, 5, 4];
+
 arrObjetivo = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+arrObjetivo = [1, 2, 3, 8, 0, 4, 7, 6, 5];
 
-var i = 0;
+arrNovo = [...arrInicial];
+arrVisitados.push([...arrInicial]);
+
+var i = 1;
 
 do {
-    console.log(i + "----------------------");
-    var arrNovo = movimentar(arrInicial);
+    console.log("%cNIVEL: " + i, "color: green");
 
-    console.log("NOVO ARRAY");
-    console.log(arrNovo);
-
-    arrInicial = arrNovo;
-//    calculoPeso(arrInicial);
+    verificaPosicoes(arrNovo);
+    var arrNovo = movimentar(arrNovo);
 
     i++;
-} while (i < 1);
+} while (i < 7);
 
 function movimentar(arr) {
     var posicao,
@@ -28,20 +31,21 @@ function movimentar(arr) {
         arrTem,
         conjunto = [],
         p,
-        pesos = [];
+        pesos = [],
+        menor;
 
-    console.log("%cESTADO", "color: green");
-    console.log(arr);
+
+    console.log("ESTADO");
+    console.log("%c" + arr, "color:orange");
+    console.log("add visitados");
+    console.table(arrVisitados);
 
     posicao = arr.indexOf(0);
-
     movimentos = regraMovimento(posicao);
 
-    console.log("movimentos: " + movimentos);
+    console.log("%ctrocando...", "color: green");
 
     tam = movimentos.length;
-
-    console.log("trocando");
 
     for (var i = 0; i < tam; i++) {
         arrTem = arr.slice();
@@ -53,34 +57,32 @@ function movimentar(arr) {
         arrTem[movimentos[i]] = p2;
 
         console.log(arrTem);
-        pesos.push(calculoPeso(arrTem));
 
+        pesos.push(calculaHeuristica(arrTem));
         conjunto.push(arrTem);
     }
 
-    console.log("pesos");
-    console.log(pesos);
+    console.log("pesos: " + pesos);
 
-    p = retornaMenor(pesos);
+    menor = retornaMenor(pesos, conjunto);
 
-    return conjunto[p];
+    console.log("---------------------");
+
+    return menor;
 }
 
-function calculoPeso(arrIni) {
-    var peso = 0,
-        tamanho = 0;
+function calculaHeuristica(arrIni) {
+    var tam = arrIni.length;
+    var peso = 0;
 
-    tamanho = arrIni.length;
-    
-    var msg = "";
-    for (var i = 0; i < tamanho; i++) {
-        if (arrIni[i] != 0) {
-            peso += Math.abs((arrIni[i]) - (arrObjetivo[i]));
-            msg += Math.abs((arrIni[i]) - (arrObjetivo[i])) + "+";
+    for (var i = 0; i < tam; i++) {
+        if (arrIni[i] != 0 && arrIni[i] != arrObjetivo[i]) {
+//            peso += Math.abs(arrIni[i] - (arrIni.indexOf(arrIni[i]) + 1));
+//            console.log(arrIni[i] + "-" + (arrIni.indexOf(arrIni[i]) + 1) + "=" + Math.abs(arrIni[i] - (arrIni.indexOf(arrIni[i]) + 1)));
+            peso += Math.abs(i - (arrObjetivo.indexOf(arrIni[i])));
+//            console.log(i + "-" + (arrObjetivo.indexOf(arrIni[i])) + "=" + Math.abs(i - (arrObjetivo.indexOf(arrIni[i]))));
         }
     }
-
-    console.log(peso);
 
     return peso;
 }
@@ -117,18 +119,67 @@ function regraMovimento(pos) {
     }
 }
 
-function retornaMenor(arr) {
-    var menor = infinito;
+function retornaMenor(arrPesos, arrConjunto) {
+    var menor = infinito,
+        pos;
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] < menor) {
-            menor = arr[i];
-            p = i;
+    console.log("verificando se ja foi escolhido");
+
+    for (var i = 0; i < arrPesos.length; i++) {
+        if (jaEscolhido(arrConjunto[i])) {
+            arrPesos[i] = infinito;
         }
     }
 
-    console.log("menor");
-    console.log(arr[p]);
+    for (var i = 0; i < arrPesos.length; i++) {
+        if (!jaEscolhido(arrConjunto[i]) && arrPesos[i] < menor) {
+            menor = arrPesos[i];
+            pos = i;
+        }
+    }
 
-    return p;
+    arrVisitados.push(arrConjunto[pos]);
+
+    console.log("menor: " + arrConjunto[pos] + "(" + arrPesos[pos] + ")");
+
+    return arrConjunto[pos];
+}
+
+function jaEscolhido(arr) {
+    var tam = arrVisitados.length,
+        iguais = false;
+
+    for (var i = 0; i < tam; i++) {
+        if (comparaArray(arr, arrVisitados[i])) {
+            console.log("ja escolhido: " + arr);
+            return true;
+        }
+    }
+
+    return iguais;
+}
+
+function comparaArray(arr1, arr2) {
+    var iguais = true;
+
+    for (var j = 0; j < arr1.length; j++) {
+        if (arr1[j] != arr2[j]) {
+            iguais = false;
+        }
+    }
+
+    return iguais;
+}
+
+function verificaPosicoes(arr) {
+    var tam = arr.length,
+        iguais = true;
+
+    for (var i = 0; i < tam; i++) {
+        if (arr[i] != arrObjetivo[i]) {
+            iguais = false;
+        }
+    }
+
+    console.log("%ciguais: " + iguais, "color:red");
 }
