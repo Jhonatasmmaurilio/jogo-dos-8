@@ -1,53 +1,107 @@
- <!DOCTYPE html>
- <html>
+<!doctype html>
+<html lang="en">
 
- <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link type="text/css" rel="stylesheet" href="css/lib/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Jogo dos oito</title>
 </head>
 
 <body class="container">
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-                <td>
-                    <input placeholder="Valor" id="valor-01" type="number" class="valor-01">
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="container_estados">
+            <div class="estado">
+                <p>Estado Inicial</p>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="4">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="6">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="5">
+                </div>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="8">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="2">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="7">
+                </div>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="1">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="0">
+                    <input type="number" min="0" max="8" class="form-control input_init" required value="3">
+                </div>
+            </div>
 
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+            <div class="estado">
+                <p>Estado Final</p>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="1">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="2">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="3">
+                </div>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="8">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="0">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="4">
+                </div>
+                <div class="linha">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="7">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="6">
+                    <input type="number" min="0" max="8" class="form-control input_final" required value="5">
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes">
+            <p><b>Tipos de busca</b></p>
+
+            <div class="buttons_group">
+                <button type="button" class="btn btn-primary busca-astar">Busca A*</button>
+                <button type="button" class="btn btn-primary busca-gulosa">Busca gulosa</button>
+                <button type="button" class="btn btn-primary bsuca-largura">Busca em largura</button>
+            </div>
+        </div>
+
+        <div class="botoes">
+            <p><b>Resultado</b></p>
+
+            <b>Tempo: </b><span class="tempo"></span>
+            <b>nós percorridos: </b><span class="nos"></span>
+            <b>Total de movimentos: </b><span class="movimentos"></span>
+        </div>
+
+        <div class="botoes">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                Ver movimentos
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Movimentos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body resultado_movimentos">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script type="text/javascript" src="js/lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/estados.js"></script>
+    <script type="text/javascript" src="js/buscaGulosa.js"></script>
+    <script type="text/javascript" src="js/buscaAStar.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+
 </body></html>

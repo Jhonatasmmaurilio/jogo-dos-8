@@ -1,0 +1,85 @@
+.estado {
+    width: 300px;
+    padding: 20px;
+}
+
+.linha {
+    display: flex;
+    justify-content: center;
+}
+
+.estado input {
+    width: 70px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+
+.estado .linha {
+    margin: 0;
+}
+
+.estado p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.linha {
+    display: flex;
+}
+
+.container_estados {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+}
+
+.botoes {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.resultados {
+    display: flex;
+    justify-content: center;
+}
+
+.resultado p {
+    text-align: center;
+}
+
+.resultado_movimentos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-mov {
+    padding: 10px 10px 0 10px;
+    font-size: 20px;
+}
+
+.res-linha > div {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #d4d4d4;
+}
+.res-linha {
+    display: flex;
+}
+.res-linha > .zero {
+    background: blue;
+    color: blue;
+    border: none;
+}
+.res-mov > div:last-child {
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+}
