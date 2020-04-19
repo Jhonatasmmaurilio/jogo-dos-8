@@ -4,10 +4,6 @@
 //estadoInicial = [1, 2, 5, 3, 4, 6, 8, 7, 0];
 //estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
 
-//nao encontra com 5000 movimentos
-//estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];
-//estadoFinal = [1, 2, 3, 4, 5, 6, 7, 8, 0];
-
 //Encontra com 26 movimentos
 //estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];
 //estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
@@ -29,10 +25,6 @@
 //encontrado com 1000 movimentos
 //estadoInicial = [1, 2, 5, 3, 4, 6, 8, 7, 0];
 //estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
-
-//nao encontra com 3000 movimentos
-//estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];
-//estadoFinal = [1, 2, 3, 4, 5, 6, 7, 8, 0];
 
 //Encontra com 277 movimentos
 //estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];

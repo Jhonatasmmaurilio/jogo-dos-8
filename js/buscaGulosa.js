@@ -1,4 +1,5 @@
 function iniciarBuscaGulosa() {
+    arrVisitados = [];
     nos = [];
     iteracao = 0;
     nivel = 0;

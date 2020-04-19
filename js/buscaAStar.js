@@ -1,4 +1,5 @@
 function iniciarBuscaAStar() {
+    arrVisitados = [];
     nos = [];
     iteracao = 0;
     nivel = 0;
