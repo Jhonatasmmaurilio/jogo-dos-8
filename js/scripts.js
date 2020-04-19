@@ -17,26 +17,54 @@ $(document).ready(function () {
 
     $(".busca-astar").click(function () {
         var data1 = new Date(),
-            data2;
+            data2,
+            el = $(this);
 
-        resultado = iniciarBuscaAStar();
-        data2 = new Date();
-        imprimeResultado(data1, data2);
-        montaMovimentos(resultado);
+        el.html("Aguarde...");
+
+        document.querySelector(".tempo").innerHTML = "";
+        document.querySelector(".nos").innerHTML = "";
+        document.querySelector(".movimentos").innerHTML = "";
+        document.querySelector(".tipo-busca").innerHTML = "Aguarde..";
+
+        setTimeout(function () {
+            resultado = iniciarBuscaAStar();
+
+            data2 = new Date();
+            imprimeResultado(data1, data2, "Busca A*");
+            montaMovimentos(resultado);
+
+            el.html("Busca A*");
+
+        }, 1000);
     });
 
     $(".busca-gulosa").click(function () {
         var data1 = new Date(),
-            data2;
+            data2,
+            el = $(this);
 
-        resultado = iniciarBuscaGulosa();
-        data2 = new Date();
-        imprimeResultado(data1, data2);
-        montaMovimentos(resultado);
+        el.html("Aguarde...");
+
+        document.querySelector(".tempo").innerHTML = "";
+        document.querySelector(".nos").innerHTML = "";
+        document.querySelector(".movimentos").innerHTML = "";
+        document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
+
+        setTimeout(function () {
+            resultado = iniciarBuscaGulosa();
+
+            data2 = new Date();
+            imprimeResultado(data1, data2, "Busca Gulosa");
+            montaMovimentos(resultado);
+
+            el.html("Busca gulosa");
+
+        }, 1000);
     });
 });
 
-function imprimeResultado(data1, data2) {
+function imprimeResultado(data1, data2, tipo) {
     var diff = data2.getTime() -
         data1.getTime(),
         msec = diff,
@@ -54,6 +82,7 @@ function imprimeResultado(data1, data2) {
     document.querySelector(".tempo").innerHTML = hh + ":" + mm + ":" + ss + "s";
     document.querySelector(".nos").innerHTML = iteracao;
     document.querySelector(".movimentos").innerHTML = nivel;
+    document.querySelector(".tipo-busca").innerHTML = tipo;
 }
 
 function montaMovimentos(arr) {
