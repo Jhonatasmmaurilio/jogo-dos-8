@@ -15,6 +15,9 @@ $(document).ready(function () {
         estadoFinal.push(Number.parseInt($(this).val()));
     });
 
+    estadoInicial = [4, 1, 0, 3, 8, 6, 7, 2, 5];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6,5];
+    
     $(".busca-astar").click(function () {
         var data1 = new Date(),
             data2,
@@ -62,6 +65,31 @@ $(document).ready(function () {
 
         }, 1000);
     });
+    
+    $(".busca-profunda").click(function () {
+        var data1 = new Date(),
+            data2,
+            el = $(this);
+
+        el.html("Aguarde...");
+
+        document.querySelector(".tempo").innerHTML = "";
+        document.querySelector(".nos").innerHTML = "";
+        document.querySelector(".movimentos").innerHTML = "";
+        document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
+
+        setTimeout(function () {
+            resultado = iniciarBuscaProfundidade();
+
+            data2 = new Date();
+            imprimeResultado(data1, data2, "Busca em profundidade");
+            montaMovimentos(resultado);
+
+            el.html("Busca em profundidade");
+
+        }, 1000);
+    });
+    
 });
 
 function imprimeResultado(data1, data2, tipo) {
