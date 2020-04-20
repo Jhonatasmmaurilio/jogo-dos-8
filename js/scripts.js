@@ -6,7 +6,6 @@ $(document).ready(function () {
     var valoresEstado = $(".input_init"),
         valoresFinal = $(".input_final");
 
-
     valoresEstado.each(function () {
         estadoInicial.push(Number.parseInt($(this).val()));
     });
@@ -15,82 +14,120 @@ $(document).ready(function () {
         estadoFinal.push(Number.parseInt($(this).val()));
     });
 
-    estadoInicial = [4, 1, 0, 3, 8, 6, 7, 2, 5];
-estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6,5];
-    
+    $(".input-estado").change(function () {
+        estadoInicial = [],
+            estadoFinal = [];
+
+        valoresEstado.each(function () {
+            estadoInicial.push(Number.parseInt($(this).val()));
+        });
+
+        valoresFinal.each(function () {
+            estadoFinal.push(Number.parseInt($(this).val()));
+        });
+    });
+
     $(".busca-astar").click(function () {
-        var data1 = new Date(),
-            data2,
-            el = $(this);
+        if (!validaEstadosInseridos()) {
+            var data1 = new Date(),
+                data2,
+                el = $(this);
 
-        el.html("Aguarde...");
+            el.html("Aguarde...");
 
-        document.querySelector(".tempo").innerHTML = "";
-        document.querySelector(".nos").innerHTML = "";
-        document.querySelector(".movimentos").innerHTML = "";
-        document.querySelector(".tipo-busca").innerHTML = "Aguarde..";
+            document.querySelector(".tempo").innerHTML = "";
+            document.querySelector(".nos").innerHTML = "";
+            document.querySelector(".movimentos").innerHTML = "";
+            document.querySelector(".tipo-busca").innerHTML = "Aguarde..";
 
-        setTimeout(function () {
-            resultado = iniciarBuscaAStar();
+            setTimeout(function () {
+                resultado = iniciarBuscaAStar();
 
-            data2 = new Date();
-            imprimeResultado(data1, data2, "Busca A*");
-            montaMovimentos(resultado);
+                data2 = new Date();
+                imprimeResultado(data1, data2, "Busca A*");
+                montaMovimentos(resultado);
 
-            el.html("Busca A*");
+                el.html("Busca A*");
 
-        }, 1000);
+            }, 1000);
+        }
     });
 
     $(".busca-gulosa").click(function () {
-        var data1 = new Date(),
-            data2,
-            el = $(this);
+        if (!validaEstadosInseridos()) {
+            var data1 = new Date(),
+                data2,
+                el = $(this);
 
-        el.html("Aguarde...");
+            el.html("Aguarde...");
 
-        document.querySelector(".tempo").innerHTML = "";
-        document.querySelector(".nos").innerHTML = "";
-        document.querySelector(".movimentos").innerHTML = "";
-        document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
+            document.querySelector(".tempo").innerHTML = "";
+            document.querySelector(".nos").innerHTML = "";
+            document.querySelector(".movimentos").innerHTML = "";
+            document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
 
-        setTimeout(function () {
-            resultado = iniciarBuscaGulosa();
+            setTimeout(function () {
+                resultado = iniciarBuscaGulosa();
 
-            data2 = new Date();
-            imprimeResultado(data1, data2, "Busca Gulosa");
-            montaMovimentos(resultado);
+                data2 = new Date();
+                imprimeResultado(data1, data2, "Busca Gulosa");
+                montaMovimentos(resultado);
 
-            el.html("Busca gulosa");
+                el.html("Busca gulosa");
 
-        }, 1000);
+            }, 1000);
+        }
     });
-    
+
     $(".busca-profunda").click(function () {
-        var data1 = new Date(),
-            data2,
-            el = $(this);
+        if (!validaEstadosInseridos()) {
+            var data1 = new Date(),
+                data2,
+                el = $(this);
 
-        el.html("Aguarde...");
+            el.html("Aguarde...");
 
-        document.querySelector(".tempo").innerHTML = "";
-        document.querySelector(".nos").innerHTML = "";
-        document.querySelector(".movimentos").innerHTML = "";
-        document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
+            document.querySelector(".tempo").innerHTML = "";
+            document.querySelector(".nos").innerHTML = "";
+            document.querySelector(".movimentos").innerHTML = "";
+            document.querySelector(".tipo-busca").innerHTML = "Aguarde...";
 
-        setTimeout(function () {
-            resultado = iniciarBuscaProfundidade();
+            setTimeout(function () {
+                resultado = iniciarBuscaProfundidade();
 
-            data2 = new Date();
-            imprimeResultado(data1, data2, "Busca em profundidade");
-            montaMovimentos(resultado);
+                data2 = new Date();
+                imprimeResultado(data1, data2, "Busca em profundidade");
+                montaMovimentos(resultado);
 
-            el.html("Busca em profundidade");
+                el.html("Busca em profundidade");
 
-        }, 1000);
+            }, 1000);
+        }
     });
-    
+
 });
+
+function validaEstadosInseridos() {
+    var erro = false;
+
+    for (var i = 0; i < 9; i++) {
+        if (estadoInicial.indexOf(i) == -1) {
+            erro = true;
+        }
+    }
+
+    for (var i = 0; i < 9; i++) {
+        if (estadoFinal.indexOf(i) == -1) {
+            erro = true;
+        }
+    }
+
+    if (erro) {
+        alert("Por favor insira estados válidos! Verifique se não está faltando ou possui numeros repetidos");
+    }
+
+    return erro;
+}
 
 function imprimeResultado(data1, data2, tipo) {
     var diff = data2.getTime() -
@@ -210,10 +247,7 @@ function jaExpandido(arr) {
 
     for (var i = 0; i < tam; i++) {
         if (comparaArray(arr, arrVisitados[i])) {
-            //            console.log("%c" + arr + ": visitado", "color:blue");
             return true;
-        } else {
-            //                        console.log("%cn visitado" + arr,"color:blue");
         }
     }
 

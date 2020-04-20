@@ -1,0 +1,49 @@
+//BUSCA A* --------------------------------------------
+
+//encontrado com 14 movimentos = 1s
+estadoInicial = [1, 2, 5, 3, 4, 6, 8, 7, 0];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontra com 25 movimentos 42s
+estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontrou em 15 niveis 1s
+estadoInicial = [4, 1, 0, 3, 8, 6, 7, 2, 5];
+estadoFinal = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+
+//Encontro com 18 movimentos 1s
+estadoInicial = [1, 2, 0, 3, 5, 6, 4, 8, 7];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontro com 23 movimentos 19s
+estadoInicial = [3, 2, 7, 8, 6, 1, 5, 0, 4];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//BUSCA EM LARGURA -------------------------------------
+
+//encontrado com 24 movimentos = 1s
+estadoInicial = [1, 2, 5, 3, 4, 6, 8, 7, 0];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontra com 53 movimentos 1s
+estadoInicial = [4, 6, 5, 8, 2, 7, 1, 0, 3];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontrou em 18 niveis 1s
+estadoInicial = [4, 1, 0, 3, 8, 6, 7, 2, 5];
+estadoFinal = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+
+//Encontro com 54 movimentos 2s
+estadoInicial = [1, 2, 0, 3, 5, 6, 4, 8, 7];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//Encontro com 23 movimentos 2s
+estadoInicial = [3, 2, 7, 8, 6, 1, 5, 0, 4];
+estadoFinal = [1, 2, 3, 8, 0, 4, 7, 6, 5];
+
+//BUSCA EM LARGURA -------------------------------------
+
+//Encontrou em 18 niveis 1s
+estadoInicial = [4, 1, 0, 3, 8, 6, 7, 2, 5];
+estadoFinal = [1, 2, 3, 4, 5, 6, 7, 8, 0];

@@ -77,7 +77,6 @@ function calculaHeuristica(arr) {
         if (arr[i]) {
             var pr = estadoFinal.indexOf(arr[i]);
             peso += matrizDistancia[i][pr];
-            //            console.log(arr[i] + " até " + pr + ": " + matrizDistancia[i][pr]);
         }
     }
 

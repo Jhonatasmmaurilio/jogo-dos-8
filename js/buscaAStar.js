@@ -62,12 +62,9 @@ function aStar(arr) {
         arrTem[3] = arr;
 
         nos.push(arrTem);
-
-        console.log(arrTem[0] + " (" + arrTem[1] + ")" + "(" + (arrTem[2] - arrTem[1]) + ")" + "(" + arrTem[2] + ")");
     }
 
     menor = retornaMenor();
-    console.log("---------------------");
 
     return menor;
 }
@@ -78,10 +75,8 @@ function calculaHeuristicaAStar(arr) {
 
     for (var i = 0; i < tam; i++) {
         if (arr[i] != 0) {
-            //            console.log(arr[i])
             var pr = estadoFinal.indexOf(arr[i]);
             peso += matrizDistancia[i][pr];
-            //                        console.log(arr[i] + " até " + pr + ": " + matrizDistancia[i][pr]);
         }
     }
 

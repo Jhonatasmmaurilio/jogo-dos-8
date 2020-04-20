@@ -7,7 +7,7 @@ function iniciarBuscaProfundidade() {
     nivel = 0;
 
     arrNovo = [];
-    arrNovo[0] = [...estadoInicial];
+    arrNovo[0] = estadoInicial;
     arrNovo[1] = nivel;
     arrNovo[2] = null;
     arrNovo[3] = null;
@@ -19,12 +19,10 @@ function iniciarBuscaProfundidade() {
         console.log("%c" + nos[0][0], "color:blue");
 
         encontrou = profundidade(nos[0]);
-
         nos.shift();
-
         iteracao++;
     }
-    while (encontrou == null);
+    while (encontrou === null);
 
     return encontrou;
 }
