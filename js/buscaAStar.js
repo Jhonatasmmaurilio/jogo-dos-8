@@ -14,17 +14,10 @@ function iniciarBuscaAStar() {
 
     do {
         if (comparaArray(arrNovo[0], estadoFinal)) {
-            console.log("%cECONTRO CARAI", "color:red");
-            console.log("%c" + arrNovo[0], "color:red");
-            console.log("%c" + estadoFinal, "color:red");
-
             nivel = arrNovo[1];
             
             return arrNovo;
         }
-
-        console.log("%cNIVEL: " + arrNovo[1] + " ITERACAO: " + iteracao, "color: green");
-        console.log("%c" + arrNovo[0] + " (" + arrNovo[1] + ")", "color:blue");
 
         arrNovo = aStar(arrNovo);
 

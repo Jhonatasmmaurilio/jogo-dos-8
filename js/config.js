@@ -5,7 +5,7 @@ var estadoInicial = [],
     arrVisitados = [],
     matrizDistancia = [],
     nos = [],
-    iteracoesTotal = 3000,
+    iteracoesTotal = 5000,
     iteracao = 0,
     nivel = 0;
 

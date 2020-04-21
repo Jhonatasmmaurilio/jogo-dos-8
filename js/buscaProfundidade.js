@@ -15,11 +15,9 @@ function iniciarBuscaProfundidade() {
     nos.push(arrNovo);
 
     do {
-        console.log("%cNIVEL: " + nos[0][1] + " ITERACAO: " + iteracao, "color: green");
-        console.log("%c" + nos[0][0], "color:blue");
-
         encontrou = profundidade(nos[0]);
         nos.shift();
+        
         iteracao++;
     }
     while (encontrou === null);
@@ -55,10 +53,6 @@ function profundidade(arr) {
         arrTem[3] = arr;
 
         if (comparaArray(arrTem[0], estadoFinal)) {
-            console.log("%cECONTRO CARAI", "color:red");
-            console.log("%c" + arrTem[0], "color:red");
-            console.log("%c" + estadoFinal, "color:red");
-
             return arrTem;
         }
 
